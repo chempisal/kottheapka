@@ -1,0 +1,16 @@
+{
+  "name": "កត់ខ្នាតធៀបការ - Wedding Invitation Size & Order Tracker",
+  "short_name": "កត់ខ្នាតធៀប",
+  "description": "កម្មវិធីកត់ត្រាខ្នាតធៀបការ ខ្នាតស្រោមសំបុត្រ និងការកុម្ម៉ង់សម្រាប់ទូរស័ព្ទដៃ",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3B47C6",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%233B47C6'/><path d='M25 30 h50 a5 5 0 0 1 5 5 v35 a5 5 0 0 1 -5 5 h-50 a5 5 0 0 1 -5 -5 v-35 a5 5 0 0 1 5 -5 z' fill='%23ffffff'/><path d='M22 32 L50 54 L78 32' stroke='%23D4AF37' stroke-width='4' fill='none'/><circle cx='50' cy='52' r='6' fill='%23D4AF37'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>កត់ខ្នាតធៀបការ | Wedding Invitation Sizes & Orders</title>
+  <meta name="description" content="កម្មវិធីកត់ត្រាខ្នាតធៀបការ ខ្នាតស្រោមសំបុត្រ និងគ្រប់គ្រងការកុម្ម៉ង់ធៀបការលើទូរស័ព្ទដៃ">
+  <meta name="theme-color" content="#3B47C6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Google Fonts: Kantumruy Pro & Moul -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Moul&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app" class="mobile-container">
+    <!-- Top Mobile App Bar -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="shop-badge">
+          <div class="shop-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="16" rx="2"/>
+              <path d="m3 6 9 6 9-6"/>
+            </svg>
+          </div>
+          <div class="shop-info">
+            <h1 class="shop-title" id="shopHeaderTitle">កត់ខ្នាតធៀបការ</h1>
+            <span class="shop-subtitle" id="currentDateDisplay">ថ្ងៃនេះ</span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button type="button" class="icon-btn" id="btnThemeToggle" title="ប្តូរពណ៌ងងឹត/ភ្លឺ" aria-label="Toggle theme">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </button>
+          
+          <button type="button" class="btn-primary-mini" id="btnQuickAdd" title="កត់ខ្នាតថ្មី">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            <span>កត់ថ្មី</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Screens Viewport -->
+    <main class="app-main">
+
+      <!-- ================= TAB 1: ORDERS LIST ================= -->
+      <section id="tabOrders" class="tab-view active">
+        <!-- Search and Quick Filter Area -->
+        <div class="search-filter-section">
+          <div class="search-box">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" id="searchInput" placeholder="ស្វែងរកតាម ឈ្មោះកូនកំលោះ ក្រមុំ លេខទូរស័ព្ទ..." autocomplete="off">
+            <button type="button" id="btnClearSearch" class="btn-clear hidden" aria-label="Clear search">×</button>
+          </div>
+
+          <!-- Status Filter Tabs -->
+          <div class="filter-chips-scroll" id="statusFilterBar">
+            <button type="button" class="chip active" data-status="all">ទាំងអស់ (<span id="countAll">0</span>)</button>
+            <button type="button" class="chip" data-status="pending">រង់ចាំ (<span id="countPending">0</span>)</button>
+            <button type="button" class="chip" data-status="producing">កំពុងផលិត (<span id="countProducing">0</span>)</button>
+            <button type="button" class="chip" data-status="ready">រួចរាល់ (<span id="countReady">0</span>)</button>
+            <button type="button" class="chip" data-status="delivered">បានប្រគល់ (<span id="countDelivered">0</span>)</button>
+          </div>
+        </div>
+
+        <!-- Quick Summary Banner -->
+        <div class="quick-summary-strip">
+          <div class="summary-pill">
+            <span class="label">កុម្ម៉ង់សរុប:</span>
+            <span class="value" id="stripTotalOrders">0</span>
+          </div>
+          <div class="summary-pill highlight">
+            <span class="label">ចំនួនធៀប:</span>
+            <span class="value" id="stripTotalCards">0 សន្លឹក</span>
+          </div>
+          <div class="summary-pill warning">
+            <span class="label">នៅជំពាក់:</span>
+            <span class="value" id="stripRemainingDue">$0</span>
+          </div>
+        </div>
+
+        <!-- Orders Cards Container -->
+        <div class="orders-list-container" id="ordersListContainer">
+          <!-- Dynamic cards rendered by JS -->
+        </div>
+
+        <!-- Empty State Message -->
+        <div class="empty-state hidden" id="emptyStateContainer">
+          <div class="empty-illustration">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#3B47C6" stroke-width="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h3>មិនមានទិន្នន័យធៀបការទេ</h3>
+          <p>សូមចុចប៊ូតុង "កត់ថ្មី" ដើម្បីកត់ត្រាខ្នាតធៀប និងព័ត៌មានអតិថិជនដំបូងរបស់អ្នក</p>
+          <button type="button" class="btn-primary" id="btnEmptyAdd">
+            + កត់ខ្នាតធៀបថ្មី
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= TAB 2: ADD / EDIT ORDER FORM ================= -->
+      <section id="tabForm" class="tab-view">
+        <div class="form-header-bar">
+          <button type="button" class="btn-back" id="btnCancelForm">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+            </svg>
+            <span>ត្រឡប់ក្រោយ</span>
+          </button>
+          <h2 id="formTitleText">កត់ខ្នាតធៀបថ្មី</h2>
+          <div style="width: 32px;"></div>
+        </div>
+
+        <form id="orderForm" class="order-form" novalidate>
+          <input type="hidden" id="orderIdField" value="">
+
+          <!-- Section 1: Customer & Couple Information -->
+          <div class="form-card">
+            <div class="form-card-title">
+              <span class="step-num">១</span>
+              <h3>ព័ត៌មានអតិថិជន និងគូស្វាមីភរិយា</h3>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="groomNameInput">ឈ្មោះកូនកំលោះ <span class="required">*</span></label>
+                <div class="input-with-icon">
+                  <span class="icon">🤵</span>
+                  <input type="text" id="groomNameInput" placeholder="ឧ. ជា ពិសាល" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="brideNameInput">ឈ្មោះកូនក្រមុំ <span class="required">*</span></label>
+                <div class="input-with-icon">
+                  <span class="icon">👰</span>
+                  <input type="text" id="brideNameInput" placeholder="ឧ. សុខ បុប្ផា" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="customerPhoneInput">លេខទូរស័ព្ទទំនាក់ទំនង <span class="required">*</span></label>
+                <div class="input-with-icon">
+                  <span class="icon">📞</span>
+                  <input type="tel" id="customerPhoneInput" placeholder="012 345 678" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="weddingDateInput">ថ្ងៃខែឆ្នាំរៀបការ <span class="required">*</span></label>
+                <input type="date" id="weddingDateInput" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="venueInput">ទីកន្លែងរៀបចំកម្មវិធី / ភោជនីយដ្ឋាន</label>
+              <input type="text" id="venueInput" placeholder="ឧ. មជ្ឈមណ្ឌលសន្និបាតកោះពេជ្រ អគារ G">
+            </div>
+          </div>
+
+          <!-- Section 2: Card Measurements (ក្របមុខ, ស្រោមលុយ, សាច់ក្នុង) -->
+          <div class="form-card highlight-card">
+            <div class="form-card-title">
+              <span class="step-num">២</span>
+              <h3>ខ្នាតធៀប (ក្របមុខ • ស្រោមលុយ • សាច់ក្នុង)</h3>
+            </div>
+
+            <!-- Standard Size Quick Buttons -->
+            <div class="form-group">
+              <div class="col-title-flex">
+                <label style="margin-bottom: 0;">ជ្រើសរើសខ្នាតស្តង់ដាររហ័ស (cm):</label>
+                <button type="button" class="btn-link" id="btnAutoSuggestAll" title="គណនាខ្នាតស្រោមលុយ និងសាច់ក្នុងដោយស្វ័យប្រវត្តពីក្របមុខ">
+                  ⚡ គណនាស្វ័យប្រវត្ត
+                </button>
+              </div>
+              <div class="size-presets-grid" id="sizePresetsContainer">
+                <button type="button" class="preset-btn" data-ch="18" data-cw="13" data-eh="18.8" data-ew="13.8" data-ih="17.5" data-iw="12.5">18 × 13 cm</button>
+                <button type="button" class="preset-btn" data-ch="17" data-cw="12" data-eh="17.8" data-ew="12.8" data-ih="16.5" data-iw="11.5">17 × 12 cm</button>
+                <button type="button" class="preset-btn" data-ch="20" data-cw="15" data-eh="20.8" data-ew="15.8" data-ih="19.5" data-iw="14.5">20 × 15 cm</button>
+                <button type="button" class="preset-btn" data-ch="20" data-cw="10" data-eh="20.8" data-ew="10.8" data-ih="19.5" data-iw="9.5">20 × 10 cm (វែង)</button>
+                <button type="button" class="preset-btn" data-ch="14" data-cw="14" data-eh="14.8" data-ew="14.8" data-ih="13.5" data-iw="13.5">14 × 14 cm (ការ៉េ)</button>
+              </div>
+            </div>
+
+            <div class="measurements-box">
+              <!-- 1. ក្របមុខ -->
+              <div class="measurement-col">
+                <span class="col-title">🖼️ ក្របមុខ (Cover)</span>
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label for="coverHeightInput">កម្ពស់ (Height cm) <span class="required">*</span></label>
+                    <input type="number" step="0.1" id="coverHeightInput" placeholder="18" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="coverWidthInput">ទទឹង (Width cm) <span class="required">*</span></label>
+                    <input type="number" step="0.1" id="coverWidthInput" placeholder="13" required>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. ស្រោមលុយ -->
+              <div class="measurement-col envelope-col">
+                <span class="col-title">✉️ ស្រោមលុយ (Money Envelope)</span>
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label for="envelopeHeightInput">កម្ពស់ (Height cm) <span class="required">*</span></label>
+                    <input type="number" step="0.1" id="envelopeHeightInput" placeholder="18.8" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="envelopeWidthInput">ទទឹង (Width cm) <span class="required">*</span></label>
+                    <input type="number" step="0.1" id="envelopeWidthInput" placeholder="13.8" required>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. សាច់ក្នុង -->
+              <div class="measurement-col inner-col">
+                <span class="col-title">📄 សាច់ក្នុង (Inner Insert)</span>
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label for="innerCardHeightInput">កម្ពស់ (Height cm) <span class="required">*</span></label>
+                    <input type="number" step="0.1" id="innerCardHeightInput" placeholder="17.5" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="innerCardWidthInput">ទទឹង (Width cm) <span class="required">*</span></label>
+                    <input type="number" step="0.1" id="innerCardWidthInput" placeholder="12.5" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Folding & Paper Specs -->
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="cardStyleSelect">ទម្រង់បត់ធៀប (Card Style)</label>
+                <select id="cardStyleSelect">
+                  <option value="បត់២ (Bi-fold)">បត់២ (Bi-fold)</option>
+                  <option value="បត់៣ (Tri-fold)">បត់៣ (Tri-fold)</option>
+                  <option value="សន្លឹកទោល (Single Card)">សន្លឹកទោល (Single Card)</option>
+                  <option value="ធៀបប្រអប់ (Box Invitation)">ធៀបប្រអប់ (Box Invitation)</option>
+                  <option value="ធៀបថ្លាអាក្រីលិក (Acrylic)">ធៀបថ្លាអាក្រីលិក (Acrylic)</option>
+                  <option value="កាតុងរឹង (Hardcover Board)">កាតុងរឹង (Hardcover Board)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="envelopeColorSelect">ពណ៌ស្រោមសំបុត្រ (Envelope Color)</label>
+                <select id="envelopeColorSelect">
+                  <option value="ក្រហមមាស (Royal Red & Gold)">ក្រហមមាស (Royal Red & Gold)</option>
+                  <option value="ផ្កាឈូកស្រាល (Blush Pink)">ផ្កាឈូកស្រាល (Blush Pink)</option>
+                  <option value="មាសស្រាល (Champagne Gold)">មាសស្រាល (Champagne Gold)</option>
+                  <option value="បៃតងត្បូង (Emerald Green)">បៃតងត្បូង (Emerald Green)</option>
+                  <option value="ខៀវចាស់ (Navy Blue)">ខៀវចាស់ (Navy Blue)</option>
+                  <option value="សក្បុស/ក្រែម (Ivory Cream)">សក្បុស/ក្រែម (Ivory Cream)</option>
+                  <option value="ស្វាយខ្ចី (Lilac/Lavender)">ស្វាយខ្ចី (Lilac/Lavender)</option>
+                  <option value="ផ្សេងៗ (Other)">ផ្សេងៗ (Other)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="paperTypeInput">ប្រភេទក្រដាសធៀប</label>
+                <input type="text" id="paperTypeInput" placeholder="ឧ. ក្រដាសពពាលមាស 300g, ក្រដាសក្រអូប">
+              </div>
+
+              <div class="form-group">
+                <label for="finishingSelect">បច្ចេកទេសពិសេស (Finishing)</label>
+                <select id="finishingSelect">
+                  <option value="ស្ពាន់ទឹកមាស (Hot Foil Gold)">ស្ពាន់ទឹកមាស (Hot Foil Gold)</option>
+                  <option value="ស្ពាន់ទឹកប្រាក់ (Hot Foil Silver)">ស្ពាន់ទឹកប្រាក់ (Hot Foil Silver)</option>
+                  <option value="អក្សរផុស (Embossing)">អក្សរផុស (Embossing)</option>
+                  <option value="បិទត្រាក្រមួន (Wax Seal)">បិទត្រាក្រមួន (Wax Seal)</option>
+                  <option value="ចងបូសូត្រ (Silk Ribbon)">ចងបូសូត្រ (Silk Ribbon)</option>
+                  <option value="ព្រីនពណ៌ធម្មតា (Standard Color)">ព្រីនពណ៌ធម្មតា (Standard Color)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Quantity, Pricing & Payment -->
+          <div class="form-card">
+            <div class="form-card-title">
+              <span class="step-num">៣</span>
+              <h3>បរិមាណ និងតម្លៃទូទាត់</h3>
+            </div>
+
+            <div class="form-grid-3">
+              <div class="form-group">
+                <label for="quantityInput">ចំនួនធៀប (សន្លឹក) <span class="required">*</span></label>
+                <input type="number" id="quantityInput" placeholder="300" min="1" required>
+              </div>
+
+              <div class="form-group">
+                <label for="unitPriceInput">តម្លៃ/សន្លឹក ($) <span class="required">*</span></label>
+                <input type="number" step="0.01" id="unitPriceInput" placeholder="0.50" required>
+              </div>
+
+              <div class="form-group">
+                <label for="totalPriceInput">តម្លៃសរុប ($)</label>
+                <input type="number" step="0.01" id="totalPriceInput" readonly class="calculated-input">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="depositInput">ប្រាក់កក់ ($)</label>
+                <input type="number" step="0.01" id="depositInput" placeholder="0.00">
+              </div>
+
+              <div class="form-group">
+                <label for="balanceDueInput">ប្រាក់នៅសល់ ($)</label>
+                <input type="number" step="0.01" id="balanceDueInput" readonly class="calculated-input danger-text">
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Production Status, Delivery Date & Notes -->
+          <div class="form-card">
+            <div class="form-card-title">
+              <span class="step-num">៤</span>
+              <h3>ស្ថានភាពផលិត និងកំណត់សម្គាល់</h3>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="orderStatusSelect">ស្ថានភាពបញ្ជាទិញ</label>
+                <select id="orderStatusSelect">
+                  <option value="pending">⏳ រង់ចាំពិនិត្យ/ឌីហ្សាញ (Pending)</option>
+                  <option value="producing">⚙️ កំពុងផលិត/កាត់ខ្នាត (In Production)</option>
+                  <option value="ready">✅ រួចរាល់/រង់ចាំយក (Ready)</option>
+                  <option value="delivered">🎉 បានប្រគល់ជូនរួចរាល់ (Delivered)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="deliveryDateInput">ថ្ងៃកំណត់ប្រគល់ទំនិញ</label>
+                <input type="date" id="deliveryDateInput">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="notesInput">កំណត់សម្គាល់បន្ថែម (សម្រាប់ជាងកាត់ ឬជាងឌីហ្សាញ)</label>
+              <textarea id="notesInput" rows="3" placeholder="ឧ. សូមកាត់គែមរាងមូល ឬបន្ថែមសំបុត្រអាំងប៉ាវ ១០ សន្លឹក..."></textarea>
+            </div>
+
+            <!-- Optional Card Proof Image Upload -->
+            <div class="form-group">
+              <label>រូបភាពគំរូធៀប (Proof Image):</label>
+              <div class="image-upload-wrapper">
+                <input type="file" id="imageFileInput" accept="image/*" class="file-input-hidden">
+                <div class="image-upload-box" id="imageUploadBox">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <polyline points="21 15 16 10 5 21"/>
+                  </svg>
+                  <span id="uploadBoxLabel">ចុចទីនេះដើម្បីថតរូប ឬជ្រើសរើសរូបគំរូធៀប</span>
+                </div>
+                <div class="image-preview-container hidden" id="imagePreviewContainer">
+                  <img id="imagePreviewImg" src="" alt="Card proof">
+                  <button type="button" id="btnRemoveImage" class="btn-remove-img" title="លុបរូបភាព">×</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Form Actions Bar -->
+          <div class="form-actions-bar">
+            <button type="button" class="btn-secondary" id="btnCancelFormBottom">បោះបង់</button>
+            <button type="submit" class="btn-primary-large" id="btnSaveOrder">
+              💾 រក្សាទុកខ្នាតធៀប
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ================= TAB 3: DASHBOARD & ANALYTICS ================= -->
+      <section id="tabAnalytics" class="tab-view">
+        <div class="analytics-header">
+          <h2>របាយការណ៍ និងស្ថិតិសរុប</h2>
+          <span class="analytics-date" id="analyticsDateSubtitle">ខែនេះ</span>
+        </div>
+
+        <!-- Key Metrics Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card purple">
+            <div class="kpi-icon">📋</div>
+            <div class="kpi-data">
+              <span class="kpi-num" id="kpiTotalOrders">0</span>
+              <span class="kpi-label">កុម្ម៉ង់ធៀបសរុប</span>
+            </div>
+          </div>
+
+          <div class="kpi-card blue">
+            <div class="kpi-icon">💌</div>
+            <div class="kpi-data">
+              <span class="kpi-num" id="kpiTotalCards">0</span>
+              <span class="kpi-label">សន្លឹកធៀបសរុប</span>
+            </div>
+          </div>
+
+          <div class="kpi-card green">
+            <div class="kpi-icon">💵</div>
+            <div class="kpi-data">
+              <span class="kpi-num" id="kpiTotalRevenue">$0.00</span>
+              <span class="kpi-label">ចំណូលសរុប</span>
+            </div>
+          </div>
+
+          <div class="kpi-card red">
+            <div class="kpi-icon">⏳</div>
+            <div class="kpi-data">
+              <span class="kpi-num" id="kpiTotalBalanceDue">$0.00</span>
+              <span class="kpi-label">ប្រាក់នៅជំពាក់</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Production Status Breakdown -->
+        <div class="analytics-section-card">
+          <h3 class="section-card-title">ស្ថានភាពសង្វាក់ផលិតកម្ម</h3>
+          <div class="status-progress-list">
+            <div class="progress-item">
+              <div class="progress-labels">
+                <span>⏳ រង់ចាំពិនិត្យ (Pending)</span>
+                <span id="progPendingVal">0</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill pending-fill" id="progPendingBar" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <div class="progress-item">
+              <div class="progress-labels">
+                <span>⚙️ កំពុងផលិត/កាត់ (In Production)</span>
+                <span id="progProducingVal">0</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill producing-fill" id="progProducingBar" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <div class="progress-item">
+              <div class="progress-labels">
+                <span>✅ រួចរាល់ (Ready)</span>
+                <span id="progReadyVal">0</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill ready-fill" id="progReadyBar" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <div class="progress-item">
+              <div class="progress-labels">
+                <span>🎉 បានប្រគល់ជូន (Delivered)</span>
+                <span id="progDeliveredVal">0</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill delivered-fill" id="progDeliveredBar" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming Delivery Schedule -->
+        <div class="analytics-section-card">
+          <h3 class="section-card-title">កាលវិភាគប្រគល់ធៀបការឆាប់ៗ</h3>
+          <div class="upcoming-list" id="upcomingScheduleList">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 4: SETTINGS & BACKUP ================= -->
+      <section id="tabSettings" class="tab-view">
+        <div class="settings-header">
+          <h2>ការកំណត់ និងទិន្នន័យ</h2>
+        </div>
+
+        <!-- Database Store Data Card -->
+        <div class="settings-card db-card">
+          <div class="db-header-flex">
+            <div>
+              <h3 style="margin-bottom: 4px;">💾 ប្រព័ន្ធមូលទិន្នន័យ (Database Store)</h3>
+              <p class="settings-hint" style="margin-bottom: 8px;">
+                ទិន្នន័យត្រូវបានរក្សាទុកក្នុង <strong>SQLite Database (database.db)</strong> និងសមកាលកម្មឆ្លងកាត់គ្រប់ទូរស័ព្ទដៃដែលភ្ជាប់មកកាន់ Server។
+              </p>
+            </div>
+            <span class="db-status-badge online" id="dbStatusBadge">🟢 SQLite Online</span>
+          </div>
+          
+          <div class="db-stats-row">
+            <div class="db-stat-item">
+              <span class="label">ប្រភេទ Database:</span>
+              <span class="val">SQLite 3 Server</span>
+            </div>
+            <div class="db-stat-item">
+              <span class="label">ឯកសារផ្ទុក:</span>
+              <span class="val"><code>database.db</code></span>
+            </div>
+          </div>
+
+          <button type="button" class="btn-secondary-full" id="btnSyncDB" style="margin-top: 10px;">
+            🔄 ធ្វើសមកាលកម្មទិន្នន័យ (Sync Database Now)
+          </button>
+        </div>
+
+        <div class="settings-card">
+          <h3>ព័ត៌មានរោងពុម្ព / ហាងធៀបការ</h3>
+          <div class="form-group">
+            <label for="settingShopName">ឈ្មោះហាង ឬរោងពុម្ព</label>
+            <input type="text" id="settingShopName" value="រោងពុម្ព ពិសាល ខ្នាតធៀបការ">
+          </div>
+          <div class="form-group">
+            <label for="settingShopPhone">លេខទូរស័ព្ទហាង</label>
+            <input type="tel" id="settingShopPhone" value="012 888 999 / 097 555 666">
+          </div>
+          <div class="form-group">
+            <label for="settingShopTelegram">ឈ្មោះគណនី Telegram</label>
+            <input type="text" id="settingShopTelegram" value="@pisal_wedding_cards">
+          </div>
+          <button type="button" class="btn-secondary-full" id="btnSaveShopSettings">
+            រក្សាទុកព័ត៌មានហាង
+          </button>
+        </div>
+
+        <div class="settings-card">
+          <h3>គ្រប់គ្រងទិន្នន័យ (Backup & Restore)</h3>
+          <p class="settings-hint">ទិន្នន័យកត់ខ្នាតធៀបការត្រូវបានរក្សាទុកដោយសុវត្ថិភាពក្នុងទូរស័ព្ទរបស់អ្នក។ អ្នកអាចទាញយកឯកសារបម្រុងទុក (Backup) បានគ្រប់ពេល។</p>
+          <div class="backup-actions-grid">
+            <button type="button" class="btn-backup" id="btnExportJSON">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              <span>ទាញយកទិន្នន័យ (Backup JSON)</span>
+            </button>
+
+            <button type="button" class="btn-backup" id="btnImportJSON">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              <span>បញ្ចូលទិន្នន័យឡើងវិញ (Restore)</span>
+            </button>
+            <input type="file" id="importFileInput" accept=".json" class="file-input-hidden">
+          </div>
+
+          <div style="margin-top: 16px;">
+            <button type="button" class="btn-reset-demo" id="btnResetDemoData">
+              🔄 ផ្ទុកទិន្នន័យគំរូឡើងវិញ (Load Sample Data)
+            </button>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <h3>អំពីកម្មវិធី</h3>
+          <div class="about-info">
+            <p><strong>កត់ខ្នាតធៀបការ</strong> កំណែទម្រង់សម្រាប់ទូរស័ព្ទដៃ (Mobile Web App)</p>
+            <p>យកលំនាំតាម Glide App: <code>pisal.glide.page/dl/7e4bba</code></p>
+            <p>ជំនួយការគណនា និងកត់ត្រាខ្នាតធៀប សម្រាប់រោងពុម្ព និងជាងឌីហ្សាញធៀបការនៅកម្ពុជា</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar (Glide / iOS Native style) -->
+    <nav class="bottom-nav">
+      <button type="button" class="nav-item active" data-tab="tabOrders" id="navOrders">
+        <div class="nav-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <span class="nav-label">បញ្ជីធៀប</span>
+      </button>
+
+      <button type="button" class="nav-item" data-tab="tabForm" id="navNewOrder">
+        <div class="nav-icon add-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </div>
+        <span class="nav-label">កត់ថ្មី</span>
+      </button>
+
+      <button type="button" class="nav-item" data-tab="tabAnalytics" id="navAnalytics">
+        <div class="nav-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+        </div>
+        <span class="nav-label">ស្ថិតិ</span>
+      </button>
+
+      <button type="button" class="nav-item" data-tab="tabSettings" id="navSettings">
+        <div class="nav-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </div>
+        <span class="nav-label">កំណត់</span>
+      </button>
+    </nav>
+
+    <!-- ================= MODAL: WORKSHOP CUTTING SLIP & RECEIPT ================= -->
+    <div id="cuttingSlipModal" class="modal-overlay hidden">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3>សន្លឹកកត់ខ្នាត និងវិក្កយបត្រ</h3>
+          <button type="button" class="btn-close-modal" id="btnCloseModal">×</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="slip-print-content" id="slipPrintArea">
+            <!-- Dynamically generated royal cutting slip -->
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-telegram-share" id="btnShareTelegram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.52 2.77-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+            </svg>
+            <span>ផ្ញើតាម Telegram</span>
+          </button>
+          <button type="button" class="btn-print" id="btnPrintSlip">
+            🖨️ បោះពុម្ព (Print)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
